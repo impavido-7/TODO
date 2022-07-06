@@ -1,0 +1,102 @@
+[
+    {
+        "id": 0,
+        "task": "Learn SASS",
+        "checked": true
+    },
+    {
+        "id": 1,
+        "task": "Create a todo app",
+        "checked": true
+    },
+    {
+        "id": 2,
+        "task": "Implement the filter component",
+        "checked": true
+    },
+    {
+        "id": 3,
+        "task": "Consume the APIs",
+        "checked": true
+    },
+    {
+        "id": 4,
+        "task": "Learn SASS",
+        "checked": false
+    },
+    {
+        "id": 5,
+        "task": "Create a todo app",
+        "checked": false
+    },
+    {
+        "id": 6,
+        "task": "Implement the filter component",
+        "checked": false
+    },
+    {
+        "id": 7,
+        "task": "Consume the APIs",
+        "checked": false
+    },
+    {
+        "id": 8,
+        "task": "Learn SASS",
+        "checked": false
+    },
+    {
+        "id": 9,
+        "task": "Create a todo app",
+        "checked": false
+    },
+    {
+        "id": 10,
+        "task": "Implement the filter component",
+        "checked": false
+    },
+    {
+        "id": 11,
+        "task": "Consume the APIs",
+        "checked": false
+    },
+    {
+        "id": 12,
+        "task": "Learn SASS",
+        "checked": false
+    },
+    {
+        "id": 13,
+        "task": "Create a todo app",
+        "checked": false
+    },
+    {
+        "id": 14,
+        "task": "Implement the filter component",
+        "checked": false
+    },
+    {
+        "id": 15,
+        "task": "Consume the APIs",
+        "checked": false
+    },
+    {
+        "id": 16,
+        "task": "Learn SASS",
+        "checked": false
+    },
+    {
+        "id": 17,
+        "task": "Create a todo app",
+        "checked": false
+    },
+    {
+        "id": 18,
+        "task": "Implement the filter component",
+        "checked": false
+    },
+    {
+        "id": 19,
+        "task": "Consume the APIs",
+        "checked": false
+    }
+]
