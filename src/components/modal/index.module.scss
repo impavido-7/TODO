@@ -1,0 +1,83 @@
+$addItemColor: #17a354;
+$cancelButtonColor: #de353b;
+
+@mixin styleButton($color) {
+    float: right;
+    margin-right: 10px;
+    border-radius: 20px;
+    padding: 10px;
+    color: white;
+    background-color: $color;
+    border-color: $color;
+    cursor: pointer;
+    &:hover {
+        background: lighten($color, $amount: 15%);
+    }
+}
+
+.modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
+}
+
+.container {
+    width: 75%;
+    height: 40%;
+    background-color: #fff;
+}
+
+.header {
+    padding: 10px;
+    text-align: center;
+    height: 10%;
+    background-color: dodgerblue;
+    color: white;
+    padding-top: 5%;
+}
+
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-between;
+    height: 70%;
+}
+
+.footer {
+    padding: 10px;
+}
+
+.title {
+    margin: 0;
+}
+
+.body {
+    padding: 10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-top: 30px;
+}
+
+.input {
+    display: inline-block;
+    width: 90%;
+    padding: 3%;
+    border-radius: 50px;
+    background-color: #c1c4c9;
+}
+
+.addButton {
+   @include styleButton($addItemColor);
+}
+
+.cancelButton {
+    @include styleButton($cancelButtonColor);
+}

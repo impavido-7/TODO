@@ -1,0 +1,92 @@
+@import "../../scssVariables/variables.scss";
+
+// Styles goes here
+body {
+    width: 100%;
+    // background-image: url("../images/backgroundImage.jpg");
+    // background-color: $bodyBackGroundColor;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: -1%;
+}
+
+.items {
+    padding: 5%;
+    width: 90%;
+    border-bottom: 2px solid $borderColor;
+    margin-top: 1%;
+    background-color: $itemBackGroundColor;
+    display: flex;
+}
+
+.button {
+    width: 10%;
+    height: 8%;
+    position: fixed;
+    bottom: 5%;
+    z-index: 5;
+    color: white;
+    background: $buttonColor;
+    border-color: $buttonColor;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 900;
+    right: 10%;
+    &:hover {
+        background: lighten($color: $buttonColor, $amount: 15%);
+    }
+}
+
+.content {
+    text-overflow: clip;
+    white-space: normal;
+    word-break: break-word;
+    padding: 0 15px;
+}
+
+.label {
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.input {
+    position: absolute;
+    transform: scale(0);
+    &:checked {
+        & ~ .checkbox {
+            transform: rotate(45deg);
+            width: 5px;
+            border-color: #24c78e;
+            border-top-color: transparent;
+            border-left-color: transparent;
+        }
+    }
+}
+
+.checkbox {
+    display: block;
+    width: inherit;
+    height: inherit;
+    border: 3px solid #434343;
+}
+
+.image {
+    position: absolute;
+    right: 5%;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.noResults {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
