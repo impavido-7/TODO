@@ -57,9 +57,16 @@
   "build": {
     "appId": "com.lakshman.search",
     "productName": "TODO",
+    "mac": {
+      "icon": "./images/mac/icon.icns"
+    },
+    "win": {
+      "icon": "./images/win/icon.ico"
+    },
     "linux": {
       "target": "deb",
-      "category": "Utility"
+      "category": "Utility",
+      "icon": "./images/png"
     }
   }
 }
