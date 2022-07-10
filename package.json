@@ -2,8 +2,11 @@
   "name": "todo",
   "version": "0.1.0",
   "private": true,
+  "description": "An app where you can manage the TODO tasks",
   "main": "public/electron.js",
   "homepage": "./",
+  "repository": "https://github.com/impavido-7/TODO.git",
+  "author": "Lakshman <lakshmanreddykp@gmail.com>",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -11,7 +14,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "electron-is-dev": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,7 +25,8 @@
     "dev": "concurrently -k \"BROWSER=none npm start\" \"npm:electron\"",
     "electron": "wait-on tcp:3000 && electron .",
     "watch": "concurrently -k \"BROWSER=none npm start\" \"npm:watchElectron\"",
-    "watchElectron": "wait-on tcp:3000 && nodemon --exec electron ."
+    "watchElectron": "wait-on tcp:3000 && nodemon --exec electron .",
+    "make": "react-scripts build && electron-builder"
   },
   "eslintConfig": {
     "extends": [
@@ -44,9 +49,17 @@
   "devDependencies": {
     "concurrently": "^7.2.2",
     "electron": "^19.0.7",
-    "electron-is-dev": "^2.0.0",
+    "electron-builder": "^23.1.0",
     "nodemon": "^2.0.19",
     "sass": "^1.53.0",
     "wait-on": "^6.0.1"
+  },
+  "build": {
+    "appId": "com.lakshman.search",
+    "productName": "TODO",
+    "linux": {
+      "target": "deb",
+      "category": "Utility"
+    }
   }
 }
