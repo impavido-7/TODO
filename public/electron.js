@@ -22,6 +22,7 @@ const createWindow = () => {
     mainWindow = new BrowserWindow({
         width: 500,
         height: 650,
+        show: false,
         icon: path.join(__dirname, "electron", "icon", "todo.png"),
         webPreferences: {
             nodeIntegration: false, // is default value after Electron v5
@@ -43,6 +44,10 @@ const createWindow = () => {
             ? 'http://localhost:3000'
             : `file://${path.join(__dirname, '../build/index.html')}`
     );
+
+    mainWindow.webContents.on("did-finish-load", e => {
+        mainWindow.show();
+    });
 
     mainWindow.on('closed', () => {
         mainWindow = null
