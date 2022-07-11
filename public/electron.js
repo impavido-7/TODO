@@ -1,6 +1,7 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const isDev = require('electron-is-dev');
 
+const fs = require('fs');
 const path = require('path');
 
 const appMenu = require("./electron/menu");
@@ -9,6 +10,8 @@ ipcMain.on("task-empty", (e, args) => {
     dialog.showErrorBox("Error", args);
 });
 
+const pathToUserData = app.getPath("userData");
+
 // // Handle creating/removing shortcuts on Windows when installing/uninstalling
 // if (require("electron-squirrel-startup")) {
 //     app.quit();
@@ -16,12 +19,27 @@ ipcMain.on("task-empty", (e, args) => {
 
 let mainWindow;
 
-const createWindow = () => {
+const storePositions = (function () {
+    let storedBounds;
+    return function (type, bounds = {}) {
+        if (type === "set") {
+            storedBounds = bounds;
+        }
+        else {
+            const fileLocation = path.join(pathToUserData, "position.json");
+            fs.writeFileSync(fileLocation, JSON.stringify(storedBounds))
+        }
+    }
+}());
+
+const createWindow = (bounds) => {
 
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 500,
-        height: 650,
+        x: bounds.x || 0,
+        y: bounds.y || 0,
+        width: bounds.width || 500,
+        height: bounds.height || 650,
         show: false,
         icon: path.join(__dirname, "electron", "icon", "todo.png"),
         webPreferences: {
@@ -31,6 +49,11 @@ const createWindow = () => {
             preload: path.join(__dirname, "electron", "preload.js") // use a preload script
         },
     });
+
+    if (!bounds.x) {
+        mainWindow.center();
+        storePositions("set", mainWindow.getBounds());
+    }
 
     // Set the window to not re-size
     mainWindow.setResizable(false);
@@ -49,7 +72,16 @@ const createWindow = () => {
         mainWindow.show();
     });
 
+    // Move Event
+    mainWindow.on("move", function (event) {
+        /**
+         * event.sender.getBounds() -> x: 132, y: 127, width: 503, height: 652
+         */
+        storePositions("set", event.sender.getBounds());
+    });
+
     mainWindow.on('closed', () => {
+        storePositions("get");
         mainWindow = null
     });
 
@@ -63,7 +95,13 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
-    createWindow();
+    // Creating a position.json file if not present earlier
+    const fileLocation = path.join(pathToUserData, "position.json");
+    if (!fs.existsSync(fileLocation)) {
+        fs.writeFileSync(fileLocation, JSON.stringify({}));
+    }
+    const bounds = fs.readFileSync(fileLocation, "utf-8");
+    createWindow(JSON.parse(bounds));
 })
 
 // Quit when all windows are closed, except on macOS. There, it's common
