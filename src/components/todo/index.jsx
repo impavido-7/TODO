@@ -33,9 +33,8 @@ const Todo = ({ taskData }) => {
             window.electronApi.send("task-empty", "Task created is empty");
         }
         else if (newTask) {
-            const lastEntry = data.length - 1;
             const newEntry = {
-                id: lastEntry >= 0 ? data[lastEntry].id + 1 : 1,
+                id: data.length ? data[0].id + 1 : 1,
                 task: newTask,
                 checked: false
             }
@@ -55,6 +54,13 @@ const Todo = ({ taskData }) => {
     // When Ctrl + N clicked to add a new item
     const getValue = (args) => {
         setShowModal(true);
+    }
+
+    const strikeThrough = (id) => {
+        const index = data.findIndex(item => item.id === id);
+        return {
+            textDecoration: data[index].checked ? "line-through" : "none"
+        }
     }
 
     window.electronApi.receive("add-new-item", getValue);
@@ -88,7 +94,7 @@ const Todo = ({ taskData }) => {
                                     />
                                     <span className={styles.checkbox}></span>
                                 </label>
-                                <span className={styles.content}> {item.task} </span>
+                                <span className={styles.content} style={strikeThrough(item.id)}> {item.task} </span>
                                 <img src={deleteImage} className={styles.image} onClick={() => deleteEntry(item.id)} />
                             </div>
                         )
