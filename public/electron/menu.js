@@ -15,6 +15,9 @@ module.exports = mainWindow => {
                         mainWindow.send('add-new-item')
                     }
                 },
+                {
+                    role: "toggleDevTools"
+                }
             ]
         },
         {
